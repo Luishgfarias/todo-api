@@ -114,10 +114,3 @@ Servidor estará disponível por padrão em:
 
 Projeto desenvolvido para fins de estudo.
 Licença: **MIT**
-
-```
-
----
-
-Se quiser, posso te gerar um exemplo de collection do **Postman** ou **Insomnia** com todas as requisições já prontas também. Quer?
-```
