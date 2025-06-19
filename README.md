@@ -83,8 +83,9 @@ npm install
 Crie um arquivo `.env` na raiz do projeto com o seguinte conteúdo (ajuste com seus dados de banco e segredo JWT):
 
 ```
+PORT=3000
 DATABASE_URL="mysql://usuario:senha@localhost:3306/nome_do_banco"
-JWT_SECRET="sua_chave_secreta"
+SECRET="sua_chave_secreta"
 ```
 
 4. **Rode as migrations:**
