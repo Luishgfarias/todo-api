@@ -39,7 +39,7 @@ Desenvolvida com **Node.js**, **Express**, **Prisma**, **TypeScript** e **MySQL*
 
 ## 📂 Estrutura básica do projeto
 
-```
+
 
 .
 ├── prisma/
@@ -60,7 +60,6 @@ Desenvolvida com **Node.js**, **Express**, **Prisma**, **TypeScript** e **MySQL*
 ├── tsconfig.json
 └── README.md
 
-````
 
 ---
 
