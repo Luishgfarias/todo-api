@@ -103,6 +103,9 @@ npm run dev
 Servidor estará disponível por padrão em:
 `http://localhost:3000`
 
+A Documentação da API com swagger está disponivel em:
+`http://localhost:3000/docs`
+
 ## ✅ Requisitos
 
 * Node.js >= 18.x
