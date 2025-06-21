@@ -1,7 +1,5 @@
 import { RequestHandler } from "express";
-import {
-    autenticacaoDeUsuario
-} from "../services/autenticacao";
+import { autenticacaoDeUsuario } from "../services/autenticacao";
 import { schemaLoginUsuario } from "../schemas/autenticacao";
 
 export const autenticacaoDeUsuarioPorEmailESenha: RequestHandler = async (
@@ -15,15 +13,12 @@ export const autenticacaoDeUsuarioPorEmailESenha: RequestHandler = async (
     });
     return;
   }
-  const usuarioAutenticado = await autenticacaoDeUsuario(verificarSchema.data.email, verificarSchema.data.senha);
-  if (!usuarioAutenticado) {
-    res.status(500).json({
-      resposta: "erro",
-    });
-    return;
-  }
+  const usuarioAutenticado = await autenticacaoDeUsuario(
+    verificarSchema.data.email,
+    verificarSchema.data.senha
+  );
 
   res.status(usuarioAutenticado.status).json({
     resposta: usuarioAutenticado.resposta,
   });
-}
+};
