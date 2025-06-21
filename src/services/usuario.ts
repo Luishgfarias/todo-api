@@ -1,7 +1,8 @@
 import { randomUUID } from "crypto";
 import * as ModelDeUsuarios from "../models/usuarios";
 import { AtualizarUsuario, NovoUsuario } from "../types/usuario";
-import * as bcrypt from "bcrypt";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 const buscarUsuarioPorEmail = async (email: string) => {
   try {
@@ -65,9 +66,18 @@ const criarUsuario = async (novoUsuario: NovoUsuario) => {
       usuarioComSenhaCriptografada,
       idDoUsuario
     );
+
+    const token = jwt.sign(
+      {
+        id: usuario.id,
+        email: usuario.email,
+      },
+      process.env.SECRET as jwt.Secret
+    );
     return {
       resposta: {
         usuario,
+        token
       },
       status: 201,
     };

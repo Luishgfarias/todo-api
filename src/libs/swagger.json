@@ -1,0 +1,289 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Documentação API de Tarefas",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/login": {
+      "post": {
+        "description": "Autenticação do usuario",
+        "tags": ["autenticação"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Login"
+              }
+            }
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/usuario": {
+      "get": {
+        "description": "Buscar informações do usuario",
+        "tags": ["usuario"],
+        "security": [{ "bearerAuth": [] }],
+        "responses": {}
+      },
+      "post": {
+        "description": "Criar novo usuario",
+        "tags": ["usuario"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Usuario"
+              }
+            }
+          }
+        },
+        "responses": {}
+      },
+      "put": {
+        "description": "Atualizar dados do usuario",
+        "tags": ["usuario"],
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Usuario"
+              }
+            }
+          }
+        },
+        "responses": {}
+      },
+      "delete": {
+        "description": "Deletar usuario | Deleta junto as tarefas do usuario",
+        "tags": ["usuario"],
+        "security": [{ "bearerAuth": [] }],
+        "responses": {}
+      }
+    },
+    "/tarefas": {
+      "get": {
+        "description": "Buscar tarefas do usuario",
+        "tags": ["tarefas"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "pagina",
+            "in": "query",
+            "description": "Pagina de busca",
+            "required": true
+          },
+          {
+            "name": "titulo",
+            "in": "query",
+            "description": "Buscar tarefa pelo titulo",
+            "required": false
+          }
+        ],
+        "responses": {}
+      },
+      "post": {
+        "description": "Criar nova tarefa",
+        "tags": ["tarefas"],
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CriarTarefa"
+              }
+            }
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/tarefas/{id}": {
+      "get": {
+        "description": "Atualizar a conclusão da tarefa",
+        "tags": ["tarefas"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID da tarefa",
+            "required": true
+          }
+        ],
+        "responses": {}
+      },
+      "patch": {
+        "description": "Atualizar a conclusão da tarefa",
+        "tags": ["tarefas"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID da tarefa",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AtualizarConclusaoTarefa"
+              }
+            }
+          }
+        },
+        "responses": {}
+      },
+      "put": {
+        "description": "Atualizar tarefa",
+        "tags": ["tarefas"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID da tarefa",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AtualizarTarefa"
+              }
+            }
+          }
+        },
+        "responses": {}
+      },
+      "delete": {
+        "description": "Deletar tarefa",
+        "tags": ["tarefas"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID da tarefa",
+            "required": true
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/tarefas/apagar-varias": {
+      "delete": {
+        "description": "Deletar varias tarefas",
+        "tags": ["tarefas"],
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ids": {
+                    "type": "array",
+                    "example": [1, 2, 3]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {}
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Login": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "usuario@email.com"
+          },
+          "senha": {
+            "type": "string",
+            "example": "123456"
+          }
+        }
+      },
+      "Usuario": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string",
+            "example": "usuario"
+          },
+          "email": {
+            "type": "string",
+            "example": "usuario@email.com"
+          },
+          "senha": {
+            "type": "string",
+            "example": "123456"
+          }
+        }
+      },
+      "CriarTarefa": {
+        "type": "object",
+        "properties": {
+          "titulo": {
+            "type": "string",
+            "example": "Titulo da tarefa"
+          },
+          "descricao": {
+            "type": "string",
+            "example": "Descricao da tarefa"
+          },
+          "urgencia": {
+            "type": "string",
+            "enum": ["PADRAO", "IMPORTANTE", "URGENTE", "CRITICA"],
+            "example": "PADRAO"
+          },
+          "dataParaConclusao": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-06-25T14:05:21.139Z"
+          }
+        }
+      },
+      "AtualizarConclusaoTarefa": {
+        "type": "object",
+        "properties": {
+          "concluida": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      },
+      "AtualizarTarefa": {
+        "allOf": [
+          { "$ref": "#/components/schemas/CriarTarefa" },
+          { "$ref": "#/components/schemas/AtualizarConclusaoTarefa" }
+        ]
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

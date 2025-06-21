@@ -147,7 +147,7 @@ const alterarConclusao: RequestHandler = async (req, res) => {
 
 const apagar: RequestHandler = async (req, res) => {
   const usuarioId = req.user!.id;
-  const { id } = req.query;
+  const { id } = req.params;
 
   if (isNaN(Number(id))) {
     res.status(400).json({

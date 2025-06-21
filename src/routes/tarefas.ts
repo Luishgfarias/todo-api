@@ -8,7 +8,7 @@ rotasDeTarefas.get("/:id", ControllerDeTarefas.buscarPorId);
 rotasDeTarefas.post("/", ControllerDeTarefas.criar);
 rotasDeTarefas.put("/:id", ControllerDeTarefas.editar);
 rotasDeTarefas.patch("/:id", ControllerDeTarefas.alterarConclusao);
-rotasDeTarefas.delete("/", ControllerDeTarefas.apagar);
 rotasDeTarefas.delete("/apagar-varias", ControllerDeTarefas.apagarVarios);
+rotasDeTarefas.delete("/:id", ControllerDeTarefas.apagar);
 
 export default rotasDeTarefas;

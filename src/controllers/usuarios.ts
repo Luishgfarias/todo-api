@@ -61,7 +61,8 @@ const atualizar: RequestHandler = async (req, res) => {
 };
 
 const deletar: RequestHandler = async (req, res) => {
-  const { id } = req.query;
+  const id = req.user!.id;
+
   const validarUuid = schemaIdUsuario.safeParse(id);
   if (!validarUuid.success) {
     res.status(400).json({
