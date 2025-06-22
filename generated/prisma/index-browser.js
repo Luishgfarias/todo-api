@@ -144,17 +144,9 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
-exports.Prisma.tarefaOrderByRelevanceFieldEnum = {
-  titulo: 'titulo',
-  descricao: 'descricao',
-  usuarioId: 'usuarioId'
-};
-
-exports.Prisma.usuarioOrderByRelevanceFieldEnum = {
-  id: 'id',
-  nome: 'nome',
-  email: 'email',
-  senha: 'senha'
+exports.Prisma.QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
 };
 exports.Urgencia = exports.$Enums.Urgencia = {
   PADRAO: 'PADRAO',

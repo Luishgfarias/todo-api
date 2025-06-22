@@ -683,6 +683,10 @@ export namespace Prisma {
             args: Prisma.tarefaCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
+          createManyAndReturn: {
+            args: Prisma.tarefaCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$tarefaPayload>[]
+          }
           delete: {
             args: Prisma.tarefaDeleteArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$tarefaPayload>
@@ -698,6 +702,10 @@ export namespace Prisma {
           updateMany: {
             args: Prisma.tarefaUpdateManyArgs<ExtArgs>
             result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.tarefaUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$tarefaPayload>[]
           }
           upsert: {
             args: Prisma.tarefaUpsertArgs<ExtArgs>
@@ -749,6 +757,10 @@ export namespace Prisma {
             args: Prisma.usuarioCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
+          createManyAndReturn: {
+            args: Prisma.usuarioCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$usuarioPayload>[]
+          }
           delete: {
             args: Prisma.usuarioDeleteArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$usuarioPayload>
@@ -764,6 +776,10 @@ export namespace Prisma {
           updateMany: {
             args: Prisma.usuarioUpdateManyArgs<ExtArgs>
             result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.usuarioUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$usuarioPayload>[]
           }
           upsert: {
             args: Prisma.usuarioUpsertArgs<ExtArgs>
@@ -1218,7 +1234,29 @@ export namespace Prisma {
     usuario?: boolean | usuarioDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["tarefa"]>
 
+  export type tarefaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    titulo?: boolean
+    descricao?: boolean
+    concluida?: boolean
+    urgencia?: boolean
+    dataDeCriacao?: boolean
+    dataParaConclusao?: boolean
+    usuarioId?: boolean
+    usuario?: boolean | usuarioDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["tarefa"]>
 
+  export type tarefaSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    titulo?: boolean
+    descricao?: boolean
+    concluida?: boolean
+    urgencia?: boolean
+    dataDeCriacao?: boolean
+    dataParaConclusao?: boolean
+    usuarioId?: boolean
+    usuario?: boolean | usuarioDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["tarefa"]>
 
   export type tarefaSelectScalar = {
     id?: boolean
@@ -1233,6 +1271,12 @@ export namespace Prisma {
 
   export type tarefaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "titulo" | "descricao" | "concluida" | "urgencia" | "dataDeCriacao" | "dataParaConclusao" | "usuarioId", ExtArgs["result"]["tarefa"]>
   export type tarefaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    usuario?: boolean | usuarioDefaultArgs<ExtArgs>
+  }
+  export type tarefaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    usuario?: boolean | usuarioDefaultArgs<ExtArgs>
+  }
+  export type tarefaIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     usuario?: boolean | usuarioDefaultArgs<ExtArgs>
   }
 
@@ -1368,6 +1412,30 @@ export namespace Prisma {
     createMany<T extends tarefaCreateManyArgs>(args?: SelectSubset<T, tarefaCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
+     * Create many Tarefas and returns the data saved in the database.
+     * @param {tarefaCreateManyAndReturnArgs} args - Arguments to create many Tarefas.
+     * @example
+     * // Create many Tarefas
+     * const tarefa = await prisma.tarefa.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Tarefas and only return the `id`
+     * const tarefaWithIdOnly = await prisma.tarefa.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends tarefaCreateManyAndReturnArgs>(args?: SelectSubset<T, tarefaCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$tarefaPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
      * Delete a Tarefa.
      * @param {tarefaDeleteArgs} args - Arguments to delete one Tarefa.
      * @example
@@ -1430,6 +1498,36 @@ export namespace Prisma {
      * 
      */
     updateMany<T extends tarefaUpdateManyArgs>(args: SelectSubset<T, tarefaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Tarefas and returns the data updated in the database.
+     * @param {tarefaUpdateManyAndReturnArgs} args - Arguments to update many Tarefas.
+     * @example
+     * // Update many Tarefas
+     * const tarefa = await prisma.tarefa.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Tarefas and only return the `id`
+     * const tarefaWithIdOnly = await prisma.tarefa.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends tarefaUpdateManyAndReturnArgs>(args: SelectSubset<T, tarefaUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$tarefaPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
      * Create or update one Tarefa.
@@ -1861,6 +1959,29 @@ export namespace Prisma {
   }
 
   /**
+   * tarefa createManyAndReturn
+   */
+  export type tarefaCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the tarefa
+     */
+    select?: tarefaSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the tarefa
+     */
+    omit?: tarefaOmit<ExtArgs> | null
+    /**
+     * The data used to create many tarefas.
+     */
+    data: tarefaCreateManyInput | tarefaCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: tarefaIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
    * tarefa update
    */
   export type tarefaUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1902,6 +2023,36 @@ export namespace Prisma {
      * Limit how many tarefas to update.
      */
     limit?: number
+  }
+
+  /**
+   * tarefa updateManyAndReturn
+   */
+  export type tarefaUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the tarefa
+     */
+    select?: tarefaSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the tarefa
+     */
+    omit?: tarefaOmit<ExtArgs> | null
+    /**
+     * The data used to update tarefas.
+     */
+    data: XOR<tarefaUpdateManyMutationInput, tarefaUncheckedUpdateManyInput>
+    /**
+     * Filter which tarefas to update
+     */
+    where?: tarefaWhereInput
+    /**
+     * Limit how many tarefas to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: tarefaIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -2157,7 +2308,21 @@ export namespace Prisma {
     _count?: boolean | UsuarioCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["usuario"]>
 
+  export type usuarioSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nome?: boolean
+    email?: boolean
+    senha?: boolean
+    dataDeCriacao?: boolean
+  }, ExtArgs["result"]["usuario"]>
 
+  export type usuarioSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nome?: boolean
+    email?: boolean
+    senha?: boolean
+    dataDeCriacao?: boolean
+  }, ExtArgs["result"]["usuario"]>
 
   export type usuarioSelectScalar = {
     id?: boolean
@@ -2172,6 +2337,8 @@ export namespace Prisma {
     tarefas?: boolean | usuario$tarefasArgs<ExtArgs>
     _count?: boolean | UsuarioCountOutputTypeDefaultArgs<ExtArgs>
   }
+  export type usuarioIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type usuarioIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $usuarioPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "usuario"
@@ -2302,6 +2469,30 @@ export namespace Prisma {
     createMany<T extends usuarioCreateManyArgs>(args?: SelectSubset<T, usuarioCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
+     * Create many Usuarios and returns the data saved in the database.
+     * @param {usuarioCreateManyAndReturnArgs} args - Arguments to create many Usuarios.
+     * @example
+     * // Create many Usuarios
+     * const usuario = await prisma.usuario.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Usuarios and only return the `id`
+     * const usuarioWithIdOnly = await prisma.usuario.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends usuarioCreateManyAndReturnArgs>(args?: SelectSubset<T, usuarioCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$usuarioPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
      * Delete a Usuario.
      * @param {usuarioDeleteArgs} args - Arguments to delete one Usuario.
      * @example
@@ -2364,6 +2555,36 @@ export namespace Prisma {
      * 
      */
     updateMany<T extends usuarioUpdateManyArgs>(args: SelectSubset<T, usuarioUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Usuarios and returns the data updated in the database.
+     * @param {usuarioUpdateManyAndReturnArgs} args - Arguments to update many Usuarios.
+     * @example
+     * // Update many Usuarios
+     * const usuario = await prisma.usuario.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Usuarios and only return the `id`
+     * const usuarioWithIdOnly = await prisma.usuario.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends usuarioUpdateManyAndReturnArgs>(args: SelectSubset<T, usuarioUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$usuarioPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
      * Create or update one Usuario.
@@ -2792,6 +3013,25 @@ export namespace Prisma {
   }
 
   /**
+   * usuario createManyAndReturn
+   */
+  export type usuarioCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the usuario
+     */
+    select?: usuarioSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the usuario
+     */
+    omit?: usuarioOmit<ExtArgs> | null
+    /**
+     * The data used to create many usuarios.
+     */
+    data: usuarioCreateManyInput | usuarioCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
    * usuario update
    */
   export type usuarioUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2821,6 +3061,32 @@ export namespace Prisma {
    * usuario updateMany
    */
   export type usuarioUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update usuarios.
+     */
+    data: XOR<usuarioUpdateManyMutationInput, usuarioUncheckedUpdateManyInput>
+    /**
+     * Filter which usuarios to update
+     */
+    where?: usuarioWhereInput
+    /**
+     * Limit how many usuarios to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * usuario updateManyAndReturn
+   */
+  export type usuarioUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the usuario
+     */
+    select?: usuarioSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the usuario
+     */
+    omit?: usuarioOmit<ExtArgs> | null
     /**
      * The data used to update usuarios.
      */
@@ -2991,23 +3257,12 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
-  export const tarefaOrderByRelevanceFieldEnum: {
-    titulo: 'titulo',
-    descricao: 'descricao',
-    usuarioId: 'usuarioId'
+  export const QueryMode: {
+    default: 'default',
+    insensitive: 'insensitive'
   };
 
-  export type tarefaOrderByRelevanceFieldEnum = (typeof tarefaOrderByRelevanceFieldEnum)[keyof typeof tarefaOrderByRelevanceFieldEnum]
-
-
-  export const usuarioOrderByRelevanceFieldEnum: {
-    id: 'id',
-    nome: 'nome',
-    email: 'email',
-    senha: 'senha'
-  };
-
-  export type usuarioOrderByRelevanceFieldEnum = (typeof usuarioOrderByRelevanceFieldEnum)[keyof typeof usuarioOrderByRelevanceFieldEnum]
+  export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
 
 
   /**
@@ -3023,9 +3278,23 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
    * Reference to a field of type 'String'
    */
   export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
+    
+
+
+  /**
+   * Reference to a field of type 'String[]'
+   */
+  export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
     
 
 
@@ -3044,6 +3313,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Urgencia[]'
+   */
+  export type ListEnumUrgenciaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Urgencia[]'>
+    
+
+
+  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -3051,9 +3327,23 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'DateTime[]'
+   */
+  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
   /**
    * Deep Input Types
@@ -3071,7 +3361,7 @@ export namespace Prisma {
     urgencia?: EnumUrgenciaFilter<"tarefa"> | $Enums.Urgencia
     dataDeCriacao?: DateTimeFilter<"tarefa"> | Date | string
     dataParaConclusao?: DateTimeFilter<"tarefa"> | Date | string
-    usuarioId?: StringFilter<"tarefa"> | string
+    usuarioId?: UuidFilter<"tarefa"> | string
     usuario?: XOR<UsuarioScalarRelationFilter, usuarioWhereInput>
   }
 
@@ -3085,7 +3375,6 @@ export namespace Prisma {
     dataParaConclusao?: SortOrder
     usuarioId?: SortOrder
     usuario?: usuarioOrderByWithRelationInput
-    _relevance?: tarefaOrderByRelevanceInput
   }
 
   export type tarefaWhereUniqueInput = Prisma.AtLeast<{
@@ -3099,7 +3388,7 @@ export namespace Prisma {
     urgencia?: EnumUrgenciaFilter<"tarefa"> | $Enums.Urgencia
     dataDeCriacao?: DateTimeFilter<"tarefa"> | Date | string
     dataParaConclusao?: DateTimeFilter<"tarefa"> | Date | string
-    usuarioId?: StringFilter<"tarefa"> | string
+    usuarioId?: UuidFilter<"tarefa"> | string
     usuario?: XOR<UsuarioScalarRelationFilter, usuarioWhereInput>
   }, "id">
 
@@ -3130,14 +3419,14 @@ export namespace Prisma {
     urgencia?: EnumUrgenciaWithAggregatesFilter<"tarefa"> | $Enums.Urgencia
     dataDeCriacao?: DateTimeWithAggregatesFilter<"tarefa"> | Date | string
     dataParaConclusao?: DateTimeWithAggregatesFilter<"tarefa"> | Date | string
-    usuarioId?: StringWithAggregatesFilter<"tarefa"> | string
+    usuarioId?: UuidWithAggregatesFilter<"tarefa"> | string
   }
 
   export type usuarioWhereInput = {
     AND?: usuarioWhereInput | usuarioWhereInput[]
     OR?: usuarioWhereInput[]
     NOT?: usuarioWhereInput | usuarioWhereInput[]
-    id?: StringFilter<"usuario"> | string
+    id?: UuidFilter<"usuario"> | string
     nome?: StringFilter<"usuario"> | string
     email?: StringFilter<"usuario"> | string
     senha?: StringFilter<"usuario"> | string
@@ -3152,7 +3441,6 @@ export namespace Prisma {
     senha?: SortOrder
     dataDeCriacao?: SortOrder
     tarefas?: tarefaOrderByRelationAggregateInput
-    _relevance?: usuarioOrderByRelevanceInput
   }
 
   export type usuarioWhereUniqueInput = Prisma.AtLeast<{
@@ -3182,7 +3470,7 @@ export namespace Prisma {
     AND?: usuarioScalarWhereWithAggregatesInput | usuarioScalarWhereWithAggregatesInput[]
     OR?: usuarioScalarWhereWithAggregatesInput[]
     NOT?: usuarioScalarWhereWithAggregatesInput | usuarioScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"usuario"> | string
+    id?: UuidWithAggregatesFilter<"usuario"> | string
     nome?: StringWithAggregatesFilter<"usuario"> | string
     email?: StringWithAggregatesFilter<"usuario"> | string
     senha?: StringWithAggregatesFilter<"usuario"> | string
@@ -3324,8 +3612,8 @@ export namespace Prisma {
 
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -3335,8 +3623,8 @@ export namespace Prisma {
 
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[]
-    notIn?: string[]
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -3344,7 +3632,7 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
+    mode?: QueryMode
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
@@ -3355,15 +3643,15 @@ export namespace Prisma {
 
   export type EnumUrgenciaFilter<$PrismaModel = never> = {
     equals?: $Enums.Urgencia | EnumUrgenciaFieldRefInput<$PrismaModel>
-    in?: $Enums.Urgencia[]
-    notIn?: $Enums.Urgencia[]
+    in?: $Enums.Urgencia[] | ListEnumUrgenciaFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Urgencia[] | ListEnumUrgenciaFieldRefInput<$PrismaModel>
     not?: NestedEnumUrgenciaFilter<$PrismaModel> | $Enums.Urgencia
   }
 
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -3371,15 +3659,21 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type UuidFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedUuidFilter<$PrismaModel> | string
+  }
+
   export type UsuarioScalarRelationFilter = {
     is?: usuarioWhereInput
     isNot?: usuarioWhereInput
-  }
-
-  export type tarefaOrderByRelevanceInput = {
-    fields: tarefaOrderByRelevanceFieldEnum | tarefaOrderByRelevanceFieldEnum[]
-    sort: SortOrder
-    search: string
   }
 
   export type tarefaCountOrderByAggregateInput = {
@@ -3425,8 +3719,8 @@ export namespace Prisma {
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -3441,8 +3735,8 @@ export namespace Prisma {
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[]
-    notIn?: string[]
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -3450,7 +3744,7 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
+    mode?: QueryMode
     not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
@@ -3467,8 +3761,8 @@ export namespace Prisma {
 
   export type EnumUrgenciaWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.Urgencia | EnumUrgenciaFieldRefInput<$PrismaModel>
-    in?: $Enums.Urgencia[]
-    notIn?: $Enums.Urgencia[]
+    in?: $Enums.Urgencia[] | ListEnumUrgenciaFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Urgencia[] | ListEnumUrgenciaFieldRefInput<$PrismaModel>
     not?: NestedEnumUrgenciaWithAggregatesFilter<$PrismaModel> | $Enums.Urgencia
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumUrgenciaFilter<$PrismaModel>
@@ -3477,8 +3771,8 @@ export namespace Prisma {
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -3489,6 +3783,21 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type UuidWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedUuidWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
+  }
+
   export type TarefaListRelationFilter = {
     every?: tarefaWhereInput
     some?: tarefaWhereInput
@@ -3497,12 +3806,6 @@ export namespace Prisma {
 
   export type tarefaOrderByRelationAggregateInput = {
     _count?: SortOrder
-  }
-
-  export type usuarioOrderByRelevanceInput = {
-    fields: usuarioOrderByRelevanceFieldEnum | usuarioOrderByRelevanceFieldEnum[]
-    sort: SortOrder
-    search: string
   }
 
   export type usuarioCountOrderByAggregateInput = {
@@ -3611,8 +3914,8 @@ export namespace Prisma {
 
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -3622,8 +3925,8 @@ export namespace Prisma {
 
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[]
-    notIn?: string[]
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -3631,7 +3934,6 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
@@ -3642,15 +3944,15 @@ export namespace Prisma {
 
   export type NestedEnumUrgenciaFilter<$PrismaModel = never> = {
     equals?: $Enums.Urgencia | EnumUrgenciaFieldRefInput<$PrismaModel>
-    in?: $Enums.Urgencia[]
-    notIn?: $Enums.Urgencia[]
+    in?: $Enums.Urgencia[] | ListEnumUrgenciaFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Urgencia[] | ListEnumUrgenciaFieldRefInput<$PrismaModel>
     not?: NestedEnumUrgenciaFilter<$PrismaModel> | $Enums.Urgencia
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -3658,10 +3960,21 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type NestedUuidFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedUuidFilter<$PrismaModel> | string
+  }
+
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -3676,8 +3989,8 @@ export namespace Prisma {
 
   export type NestedFloatFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
@@ -3687,8 +4000,8 @@ export namespace Prisma {
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[]
-    notIn?: string[]
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -3696,7 +4009,6 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
     not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
@@ -3713,8 +4025,8 @@ export namespace Prisma {
 
   export type NestedEnumUrgenciaWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.Urgencia | EnumUrgenciaFieldRefInput<$PrismaModel>
-    in?: $Enums.Urgencia[]
-    notIn?: $Enums.Urgencia[]
+    in?: $Enums.Urgencia[] | ListEnumUrgenciaFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Urgencia[] | ListEnumUrgenciaFieldRefInput<$PrismaModel>
     not?: NestedEnumUrgenciaWithAggregatesFilter<$PrismaModel> | $Enums.Urgencia
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumUrgenciaFilter<$PrismaModel>
@@ -3723,8 +4035,8 @@ export namespace Prisma {
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -3733,6 +4045,20 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedUuidWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedUuidWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
   }
 
   export type usuarioCreateWithoutTarefasInput = {
@@ -3839,7 +4165,7 @@ export namespace Prisma {
     urgencia?: EnumUrgenciaFilter<"tarefa"> | $Enums.Urgencia
     dataDeCriacao?: DateTimeFilter<"tarefa"> | Date | string
     dataParaConclusao?: DateTimeFilter<"tarefa"> | Date | string
-    usuarioId?: StringFilter<"tarefa"> | string
+    usuarioId?: UuidFilter<"tarefa"> | string
   }
 
   export type tarefaCreateManyUsuarioInput = {
