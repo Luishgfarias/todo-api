@@ -84,7 +84,7 @@ Crie um arquivo `.env` na raiz do projeto com o seguinte conteúdo (ajuste com s
 
 ```
 PORT=3000
-DATABASE_URL="mysql://usuario:senha@localhost:3306/nome_do_banco"
+DATABASE_URL="postgresql://postgres:senha123@localhost:5432/todo_api"
 SECRET="sua_chave_secreta"
 ```
 
@@ -109,7 +109,7 @@ A Documentação da API com swagger está disponivel em:
 ## ✅ Requisitos
 
 * Node.js >= 18.x
-* MySQL
+* PostgreSQL
 * npm
 
 ---
