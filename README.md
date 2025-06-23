@@ -2,7 +2,7 @@
 # 📋 ToDo API - Lista de Tarefas com Usuários
 
 Uma API RESTful para gerenciamento de **tarefas pessoais por usuário**, com **autenticação JWT**.  
-Desenvolvida com **Node.js**, **Express**, **Prisma**, **TypeScript** e **MySQL**.
+Desenvolvida com **Node.js**, **Express**, **Prisma**, **TypeScript** e **PostgreSQL**.
 
 ---
 
