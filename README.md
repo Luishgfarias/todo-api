@@ -12,7 +12,7 @@ Desenvolvida com **Node.js**, **Express**, **Prisma**, **TypeScript** e **MySQL*
 - Express
 - TypeScript
 - Prisma ORM
-- MySQL
+- PostgreSQL
 - JWT (JSON Web Token)
 - bcrypt
 - dotenv
