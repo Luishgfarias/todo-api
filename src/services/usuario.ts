@@ -119,7 +119,7 @@ const atualizarUsuario = async (
     );
     return {
       resposta: {
-        usuario,
+        ...usuario,
       },
       status: 200,
     };

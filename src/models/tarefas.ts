@@ -26,6 +26,7 @@ const buscarTarefas = async (
         id: true,
         titulo: true,
         concluida: true,
+        urgencia: true,
         dataParaConclusao: true,
       },
       skip: pularItens,

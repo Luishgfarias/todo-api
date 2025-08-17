@@ -39,9 +39,7 @@ const buscar: RequestHandler = async (req, res) => {
     validarSchemaBuscarTarefasPorTitulo.data.pagina
   );
 
-  res.status(resultado.status).json({
-    resposta: resultado.resposta,
-  });
+  res.status(resultado.status).json(resultado.resposta);
 };
 
 const buscarPorId: RequestHandler = async (req, res) => {
@@ -50,9 +48,7 @@ const buscarPorId: RequestHandler = async (req, res) => {
 
   const resultado = await buscarTarefaPorId(+id, usuarioId);
 
-  res.status(resultado.status).json({
-    resposta: resultado.resposta,
-  });
+  res.status(resultado.status).json(resultado.resposta);
 };
 
 const criar: RequestHandler = async (req, res) => {
@@ -72,10 +68,7 @@ const criar: RequestHandler = async (req, res) => {
 
   const resultado = await criarTarefa(validarSchemaNovaTarefa.data);
 
-  res.status(resultado.status).json({
-    resposta: resultado.resposta,
-    tarefa: resultado.tarefa,
-  });
+  res.status(resultado.status).json(resultado.tarefa);
 };
 
 const editar: RequestHandler = async (req, res) => {
@@ -105,10 +98,7 @@ const editar: RequestHandler = async (req, res) => {
     usuarioId
   );
 
-  res.status(resultado.status).json({
-    resposta: resultado.resposta,
-    tarefa: resultado.tarefa,
-  });
+  res.status(resultado.status).json(resultado.tarefa);
 };
 
 const alterarConclusao: RequestHandler = async (req, res) => {
@@ -139,10 +129,7 @@ const alterarConclusao: RequestHandler = async (req, res) => {
     usuarioId
   );
 
-  res.status(resultado.status).json({
-    resposta: resultado.resposta,
-    tarefa: resultado.tarefa,
-  });
+  res.status(resultado.status).json(resultado.resposta);
 };
 
 const apagar: RequestHandler = async (req, res) => {
@@ -158,9 +145,7 @@ const apagar: RequestHandler = async (req, res) => {
 
   const resultado = await deletarTarefa(Number(id), usuarioId);
 
-  res.status(resultado.status).json({
-    resposta: resultado.resposta,
-  });
+  res.status(resultado.status).json(resultado.resposta);
 };
 
 const apagarVarios: RequestHandler = async (req, res) => {
@@ -177,9 +162,7 @@ const apagarVarios: RequestHandler = async (req, res) => {
   const resultado = await deletarVariasTarefas(
     validarSchemaApagarTarefas.data.ids
   );
-  res.status(resultado.status).json({
-    resposta: resultado.resposta,
-  });
+  res.status(resultado.status).json(resultado.resposta);
 };
 
 export {

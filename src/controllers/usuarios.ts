@@ -17,29 +17,25 @@ const buscarPorId: RequestHandler = async (req, res) => {
   const usuarioBD = await buscarUsuarioPorId(id);
   if (!usuarioBD) {
     res.status(500).json({
-      resposta: "erro",
+      erro: "erro",
     });
   }
 
-  res.status(usuarioBD.status).json({
-    resposta: usuarioBD.resposta,
-  });
+  res.status(usuarioBD.status).json(usuarioBD.resposta);
 };
 
 const criar: RequestHandler = async (req, res) => {
   const verificarSchema = schemaUsuario.safeParse(req.body);
   if (!verificarSchema.success) {
     res.status(400).json({
-      resposta: verificarSchema.error.format(),
+      erro: verificarSchema.error.format(),
     });
     return;
   }
 
   const novoUsuario = await criarUsuario(verificarSchema.data);
 
-  res.status(novoUsuario.status).json({
-    resposta: novoUsuario.resposta,
-  });
+  res.status(novoUsuario.status).json(novoUsuario.resposta);
 };
 
 const atualizar: RequestHandler = async (req, res) => {
@@ -48,16 +44,14 @@ const atualizar: RequestHandler = async (req, res) => {
   const verificarSchema = schemaAtualizarUsuario.safeParse(req.body);
   if (!verificarSchema.success) {
     res.status(400).json({
-      resposta: verificarSchema.error.format(),
+      erro: verificarSchema.error.format(),
     });
     return;
   }
 
   const resultado = await atualizarUsuario(id, verificarSchema.data);
 
-  res.status(resultado.status).json({
-    resposta: resultado.resposta,
-  });
+  res.status(resultado.status).json(resultado.resposta);
 };
 
 const deletar: RequestHandler = async (req, res) => {
@@ -66,16 +60,14 @@ const deletar: RequestHandler = async (req, res) => {
   const validarUuid = schemaIdUsuario.safeParse(id);
   if (!validarUuid.success) {
     res.status(400).json({
-      resposta: validarUuid.error.format(),
+      erro: validarUuid.error.format(),
     });
     return;
   }
 
   const resultado = await deletarUsuario(validarUuid.data);
 
-  res.status(resultado.status).json({
-    resposta: resultado.resposta,
-  });
+  res.status(resultado.status).json(resultado.resposta);
 };
 
 export { buscarPorId, criar, atualizar, deletar };

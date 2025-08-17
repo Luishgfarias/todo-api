@@ -23,6 +23,7 @@ const buscarUsuarioPorId = async (id: string) => {
       },
       omit: {
         senha: true,
+        dataDeCriacao: true,
       }
     });
     return usuario;
@@ -40,6 +41,7 @@ const criarUsuario = async (novoUsuario: NovoUsuario, id: string) => {
       },
       omit: {
         senha: true,
+        dataDeCriacao: true,
       }
     });
     return usuario;
@@ -58,6 +60,7 @@ const atualizarUsuario = async (
       data: dadosUsuarioAtualizados,
       omit: {
         senha: true,
+        dataDeCriacao: true,
       }
     });
     return usuario;

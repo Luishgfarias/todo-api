@@ -61,7 +61,6 @@ const criarTarefa = async (novaTarefa: TipoTarefa) => {
   try {
     const tarefa = await ModelTarefas.criarTarefa(novaTarefa);
     return {
-      resposta: "Tarefa adicionada com sucesso!",
       tarefa,
       status: 201,
     };
@@ -83,7 +82,6 @@ const editarTarefa = async (id: number, dados: TipoEditarTarefa, usuarioId: stri
 
     const tarefa = await ModelTarefas.editarTarefa(id, dados);
     return {
-      resposta: "Tarefa editada com sucesso!",
       tarefa,
       status: 200,
     };
@@ -105,8 +103,7 @@ const alterarConclusaoTarefa = async (id: number, concluida: boolean, usuarioId:
 
     const tarefa = await ModelTarefas.alterarConclusaoTarefa(id, concluida);
     return {
-      resposta: "Conclusao alterada com sucesso!",
-      tarefa,
+      resposta: tarefa,
       status: 200,
     };
   } catch (error) {

@@ -9,7 +9,7 @@ export const autenticacaoDeUsuarioPorEmailESenha: RequestHandler = async (
   const verificarSchema = schemaLoginUsuario.safeParse(req.body);
   if (!verificarSchema.success) {
     res.status(400).json({
-      resposta: verificarSchema.error.format(),
+      erro: verificarSchema.error.format(),
     });
     return;
   }
@@ -18,7 +18,5 @@ export const autenticacaoDeUsuarioPorEmailESenha: RequestHandler = async (
     verificarSchema.data.senha
   );
 
-  res.status(usuarioAutenticado.status).json({
-    resposta: usuarioAutenticado.resposta,
-  });
+  res.status(usuarioAutenticado.status).json(usuarioAutenticado.resposta);
 };
